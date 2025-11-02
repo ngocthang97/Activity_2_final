@@ -1,0 +1,1590 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Thang\_Activity 2},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Thang\_Activity 2}
+\author{}
+\date{\vspace{-2.5em}2025-10-24}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Set global CRAN mirror}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repos =} \FunctionTok{c}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"https://cran.rstudio.com/"}\NormalTok{))}
+
+\DocumentationTok{\#\# Install the tableone package}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tableone"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Installing package into 'C:/Users/Thang/AppData/Local/R/win-library/4.3'
+## (as 'lib' is unspecified)
+\end{verbatim}
+
+\begin{verbatim}
+## package 'tableone' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\Thang\AppData\Local\Temp\RtmpyY9ShT\downloaded_packages
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Load the package}
+\FunctionTok{library}\NormalTok{(tableone)}
+\FunctionTok{library}\NormalTok{(readxl)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(janitor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'janitor'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{setwd}\NormalTok{(}\StringTok{"C:/Users/Thang/OneDrive/Desktop/Activity2"}\NormalTok{)}
+\NormalTok{Data }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"CPAPAdherence\_Data\_Clean.xlsx"}\NormalTok{)}
+\FunctionTok{str}\NormalTok{(Data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tibble [174 x 15] (S3: tbl_df/tbl/data.frame)
+##  $ subject_id    : chr [1:174] "11-01102" "11-01153" "11-01442" "11-01634" ...
+##  $ ethnicity     : chr [1:174] "Not Hispanic or Latino" "Not Hispanic or Latino" "Not Hispanic or Latino" "Not Hispanic or Latino" ...
+##  $ education     : chr [1:174] "> high school" "> high school" "> high school" "> high school" ...
+##  $ race          : chr [1:174] "Black" "White" "White" "White" ...
+##  $ age           : num [1:174] 62 71 75 62 55 70 67 75 75 63 ...
+##  $ sex           : chr [1:174] "Female" "Male" "Female" "Male" ...
+##  $ bmi           : num [1:174] 51 42.8 53.5 35.8 41.4 ...
+##  $ ahi           : num [1:174] 22.4 24.4 19.9 21.5 18.2 33.4 15.3 22 79.7 37 ...
+##  $ ess           : num [1:174] 17 6 4 9 7 8 1 5 6 22 ...
+##  $ mmse          : num [1:174] 27 30 30 29 29 26 29 29 30 26 ...
+##  $ avg_daily_cpap: num [1:174] 6.45 9.05 4.57 7.62 6.3 ...
+##  $ adherence     : chr [1:174] "Adherent" "Adherent" "Adherent" "Adherent" ...
+##  $ odsi_bl       : num [1:174] 5 0 2 16 10 2 0 0 4 19 ...
+##  $ odsi_6m       : num [1:174] 4 0 2 0 8 2 0 1 3 18 ...
+##  $ adcs_12m      : num [1:174] 4 2 4 1 1 2 4 1 1 6 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 15
+##   subject_id ethnicity       education race    age sex     bmi   ahi   ess  mmse
+##   <chr>      <chr>           <chr>     <chr> <dbl> <chr> <dbl> <dbl> <dbl> <dbl>
+## 1 11-01102   Not Hispanic o~ > high s~ Black    62 Fema~  51.0  22.4    17    27
+## 2 11-01153   Not Hispanic o~ > high s~ White    71 Male   42.8  24.4     6    30
+## 3 11-01442   Not Hispanic o~ > high s~ White    75 Fema~  53.5  19.9     4    30
+## 4 11-01634   Not Hispanic o~ > high s~ White    62 Male   35.8  21.5     9    29
+## 5 11-01769   Not Hispanic o~ > high s~ Black    55 Fema~  41.4  18.2     7    29
+## 6 11-01777   Not Hispanic o~ > high s~ White    70 Fema~  37.5  33.4     8    26
+## # i 5 more variables: avg_daily_cpap <dbl>, adherence <chr>, odsi_bl <dbl>,
+## #   odsi_6m <dbl>, adcs_12m <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(Data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 174  15
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data }\OtherTok{\textless{}{-}} \FunctionTok{clean\_names}\NormalTok{(Data)}
+
+\NormalTok{Data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{ethnicity =} \FunctionTok{factor}\NormalTok{(ethnicity),}
+    \AttributeTok{education =} \FunctionTok{factor}\NormalTok{(education, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"\textless{}= high school"}\NormalTok{, }\StringTok{"\textgreater{} high school"}\NormalTok{)),}
+    \AttributeTok{race =} \FunctionTok{factor}\NormalTok{(race, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"White"}\NormalTok{, }\StringTok{"Black"}\NormalTok{, }\StringTok{"Other"}\NormalTok{)),}
+    \AttributeTok{adherence =} \FunctionTok{factor}\NormalTok{(adherence, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Non{-}adherent"}\NormalTok{, }\StringTok{"Adherent"}\NormalTok{))}
+\NormalTok{  )}
+
+\NormalTok{Data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{age =} \FunctionTok{as.numeric}\NormalTok{(age),}
+    \AttributeTok{ahi =} \FunctionTok{as.numeric}\NormalTok{(ahi),}
+    \AttributeTok{ess =} \FunctionTok{as.numeric}\NormalTok{(ess),}
+    \AttributeTok{mmse =} \FunctionTok{as.numeric}\NormalTok{(mmse),}
+    \AttributeTok{avg\_daily\_cpap =} \FunctionTok{as.numeric}\NormalTok{(avg\_daily\_cpap)}
+\NormalTok{  )}
+\DocumentationTok{\#\# {-}{-}{-} Check for missing values {-}{-}{-}}
+\FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(Data))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     subject_id      ethnicity      education           race            age 
+##              0              0              0              1              0 
+##            sex            bmi            ahi            ess           mmse 
+##              0              0              0              0              0 
+## avg_daily_cpap      adherence        odsi_bl        odsi_6m       adcs_12m 
+##              0              0              0             21             45
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# {-}{-}{-} Summary of all variables {-}{-}{-}}
+\FunctionTok{summary}\NormalTok{(Data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   subject_id                         ethnicity            education  
+##  Length:174         Hispanic or Latino    : 13   <= high school: 36  
+##  Class :character   Not Hispanic or Latino:161   > high school :138  
+##  Mode  :character                                                    
+##                                                                      
+##                                                                      
+##                                                                      
+##                                                                      
+##     race          age            sex                 bmi       
+##  White:124   Min.   :55.00   Length:174         Min.   :20.00  
+##  Black: 37   1st Qu.:61.00   Class :character   1st Qu.:37.50  
+##  Other: 12   Median :66.50   Mode  :character   Median :42.32  
+##  NA's :  1   Mean   :66.86                      Mean   :42.18  
+##              3rd Qu.:72.00                      3rd Qu.:46.88  
+##              Max.   :85.00                      Max.   :65.11  
+##                                                                
+##       ahi              ess              mmse       avg_daily_cpap 
+##  Min.   : 15.00   Min.   : 0.000   Min.   :21.00   Min.   :0.000  
+##  1st Qu.: 19.50   1st Qu.: 6.000   1st Qu.:26.25   1st Qu.:3.800  
+##  Median : 28.45   Median : 8.000   Median :28.00   Median :5.667  
+##  Mean   : 34.78   Mean   : 8.885   Mean   :27.60   Mean   :5.151  
+##  3rd Qu.: 44.62   3rd Qu.:12.000   3rd Qu.:29.00   3rd Qu.:7.046  
+##  Max.   :119.40   Max.   :22.000   Max.   :30.00   Max.   :9.300  
+##                                                                   
+##         adherence      odsi_bl          odsi_6m          adcs_12m    
+##  Non-adherent: 46   Min.   : 0.000   Min.   : 0.000   Min.   :1.000  
+##  Adherent    :128   1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.:2.000  
+##                     Median : 6.000   Median : 3.000   Median :3.000  
+##                     Mean   : 7.983   Mean   : 5.268   Mean   :3.194  
+##                     3rd Qu.:13.000   3rd Qu.: 8.000   3rd Qu.:4.000  
+##                     Max.   :22.000   Max.   :18.000   Max.   :6.000  
+##                                      NA's   :21       NA's   :45
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Save cleaned dataset}
+\FunctionTok{write.csv}\NormalTok{(Data, }\StringTok{"CPAPAdherence\_Data\_Clean\_Ready.csv"}\NormalTok{, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{)}
+
+\FunctionTok{library}\NormalTok{(gtsummary)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(broom)}
+
+\FunctionTok{names}\NormalTok{(Data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "subject_id"     "ethnicity"      "education"      "race"          
+##  [5] "age"            "sex"            "bmi"            "ahi"           
+##  [9] "ess"            "mmse"           "avg_daily_cpap" "adherence"     
+## [13] "odsi_bl"        "odsi_6m"        "adcs_12m"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}
+    \AttributeTok{Ethnicity =}\NormalTok{ ethnicity,}
+    \AttributeTok{Education =}\NormalTok{ education,}
+    \AttributeTok{Race =}\NormalTok{ race,}
+    \AttributeTok{Age =}\NormalTok{ age,}
+    \AttributeTok{Sex =}\NormalTok{ sex,}
+    \AttributeTok{BMI =}\NormalTok{ bmi,}
+    \AttributeTok{AHI =}\NormalTok{ ahi,}
+    \AttributeTok{ESS =}\NormalTok{ ess,}
+    \AttributeTok{MMSE =}\NormalTok{ mmse,}
+    \AttributeTok{ODSI\_baseline =}\NormalTok{ odsi\_bl,}
+    \AttributeTok{ADCS\_MCI\_12m =}\NormalTok{ adcs\_12m,}
+    \AttributeTok{ODSI\_6m =}\NormalTok{ odsi\_6m,}
+    \StringTok{\textasciigrave{}}\AttributeTok{Average daily CPAP (hr/night)}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ avg\_daily\_cpap}
+\NormalTok{  )}
+  
+  
+\NormalTok{Data}\SpecialCharTok{$}\NormalTok{adherence }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{adherence,}
+                                 \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"Non{-}adherent"}\NormalTok{, }\StringTok{"Adherent"}\NormalTok{))}
+\FunctionTok{library}\NormalTok{(dplyr)                                }
+\NormalTok{table1 }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(Ethnicity, Education, Race, Age, Sex, BMI, AHI, ESS, MMSE,}
+         \StringTok{\textasciigrave{}}\AttributeTok{Average daily CPAP (hr/night)}\StringTok{\textasciigrave{}}\NormalTok{, adherence, ODSI\_baseline, ODSI\_6m, }
+\NormalTok{         ADCS\_MCI\_12m) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tbl\_summary}\NormalTok{(}
+    \AttributeTok{by =}\NormalTok{ adherence,}
+    \AttributeTok{statistic =} \FunctionTok{list}\NormalTok{(}
+      \FunctionTok{all\_continuous}\NormalTok{() }\SpecialCharTok{\textasciitilde{}} \StringTok{"\{mean\} ± \{sd\}"}\NormalTok{,}
+      \FunctionTok{all\_categorical}\NormalTok{() }\SpecialCharTok{\textasciitilde{}} \StringTok{"\{n\} (\{p\}\%)"}
+\NormalTok{    ),}
+    \AttributeTok{digits =} \FunctionTok{all\_continuous}\NormalTok{() }\SpecialCharTok{\textasciitilde{}} \DecValTok{2}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{add\_p}\NormalTok{(}\AttributeTok{test =} \FunctionTok{list}\NormalTok{(}
+    \FunctionTok{all\_continuous}\NormalTok{() }\SpecialCharTok{\textasciitilde{}} \StringTok{"t.test"}\NormalTok{,}
+    \FunctionTok{all\_categorical}\NormalTok{() }\SpecialCharTok{\textasciitilde{}} \StringTok{"chisq.test"}
+\NormalTok{  )) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{add\_n}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{modify\_header}\NormalTok{(label }\SpecialCharTok{\textasciitilde{}} \StringTok{"**Characteristic**"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{modify\_caption}\NormalTok{(}\StringTok{"Demographic and Clinical Characteristics (n = 174)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The following warnings were returned during `modify_caption()`:
+\end{verbatim}
+
+\begin{verbatim}
+## ! For variable `ADCS_MCI_12m` (`adherence`) and "statistic", "p.value", and
+##   "parameter" statistics: Chi-squared approximation may be incorrect
+## ! For variable `Ethnicity` (`adherence`) and "statistic", "p.value", and
+##   "parameter" statistics: Chi-squared approximation may be incorrect
+## ! For variable `MMSE` (`adherence`) and "statistic", "p.value", and "parameter"
+##   statistics: Chi-squared approximation may be incorrect
+## ! For variable `Race` (`adherence`) and "statistic", "p.value", and "parameter"
+##   statistics: Chi-squared approximation may be incorrect
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vars }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"ethnicity"}\NormalTok{, }\StringTok{"education"}\NormalTok{, }\StringTok{"race"}\NormalTok{, }\StringTok{"age"}\NormalTok{, }\StringTok{"sex"}\NormalTok{, }\StringTok{"BMI"}\NormalTok{, }\StringTok{"AHI"}\NormalTok{,}
+          \StringTok{"ESS"}\NormalTok{, }\StringTok{"MMSE"}\NormalTok{,}\StringTok{"Average daily CPAP (hr/night)"}\NormalTok{, }\StringTok{"ODSI\_baseline"}\NormalTok{, }
+          \StringTok{"ODSI\_6m"}\NormalTok{, }\StringTok{"ADCS\_MCI\_12m"}\NormalTok{)}
+\FunctionTok{library}\NormalTok{(tableone)}
+\NormalTok{tab1 }\OtherTok{\textless{}{-}} \FunctionTok{CreateTableOne}\NormalTok{(}\AttributeTok{vars =}\NormalTok{ vars, }\AttributeTok{strata =} \StringTok{"adherence"}\NormalTok{, }\AttributeTok{data =}\NormalTok{ Data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in ModuleReturnVarsExist(vars, data): The data frame does not have:
+## ethnicity education race age sex Dropped
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(tab1, }\AttributeTok{showAllLevels =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{smd =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                            Stratified by adherence
+##                                             level Non-adherent  Adherent     
+##   n                                                  46           128        
+##   BMI (mean (SD))                                 42.15 (7.37)  42.20 (7.18) 
+##   AHI (mean (SD))                                 35.59 (19.91) 34.49 (21.20)
+##   ESS (mean (SD))                                  9.02 (4.79)   8.84 (5.04) 
+##   MMSE (mean (SD))                                27.39 (1.81)  27.67 (1.77) 
+##   Average daily CPAP (hr/night) (mean (SD))        1.61 (1.35)   6.42 (1.32) 
+##   ODSI_baseline (mean (SD))                        8.30 (5.77)   7.87 (6.21) 
+##   ODSI_6m (mean (SD))                              6.18 (5.35)   5.01 (4.80) 
+##   ADCS_MCI_12m (mean (SD))                         3.69 (1.41)   3.07 (1.47) 
+##                                            Stratified by adherence
+##                                             p      test SMD   
+##   n                                                           
+##   BMI (mean (SD))                            0.966       0.007
+##   AHI (mean (SD))                            0.758       0.054
+##   ESS (mean (SD))                            0.828       0.038
+##   MMSE (mean (SD))                           0.361       0.157
+##   Average daily CPAP (hr/night) (mean (SD)) <0.001       3.613
+##   ODSI_baseline (mean (SD))                  0.677       0.073
+##   ODSI_6m (mean (SD))                        0.224       0.230
+##   ADCS_MCI_12m (mean (SD))                   0.053       0.434
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{write.csv}\NormalTok{(}\FunctionTok{print}\NormalTok{(tab1, }\AttributeTok{showAllLevels =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{smd =} \ConstantTok{TRUE}\NormalTok{),}
+          \StringTok{"Table1\_Summary.csv"}\NormalTok{, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                                            Stratified by adherence
+##                                             level Non-adherent  Adherent     
+##   n                                                  46           128        
+##   BMI (mean (SD))                                 42.15 (7.37)  42.20 (7.18) 
+##   AHI (mean (SD))                                 35.59 (19.91) 34.49 (21.20)
+##   ESS (mean (SD))                                  9.02 (4.79)   8.84 (5.04) 
+##   MMSE (mean (SD))                                27.39 (1.81)  27.67 (1.77) 
+##   Average daily CPAP (hr/night) (mean (SD))        1.61 (1.35)   6.42 (1.32) 
+##   ODSI_baseline (mean (SD))                        8.30 (5.77)   7.87 (6.21) 
+##   ODSI_6m (mean (SD))                              6.18 (5.35)   5.01 (4.80) 
+##   ADCS_MCI_12m (mean (SD))                         3.69 (1.41)   3.07 (1.47) 
+##                                            Stratified by adherence
+##                                             p      test SMD   
+##   n                                                           
+##   BMI (mean (SD))                            0.966       0.007
+##   AHI (mean (SD))                            0.758       0.054
+##   ESS (mean (SD))                            0.828       0.038
+##   MMSE (mean (SD))                           0.361       0.157
+##   Average daily CPAP (hr/night) (mean (SD)) <0.001       3.613
+##   ODSI_baseline (mean (SD))                  0.677       0.073
+##   ODSI_6m (mean (SD))                        0.224       0.230
+##   ADCS_MCI_12m (mean (SD))                   0.053       0.434
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{table1     }\CommentTok{\#}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[t]
+\caption{\label{tab:table 1}Demographic and Clinical Characteristics (n = 174)} 
+\fontsize{12.0pt}{14.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Characteristic} & \textbf{N} & \textbf{Non-adherent}  N = 46\textsuperscript{\textit{1}} & \textbf{Adherent}  N = 128\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\midrule\addlinespace[2.5pt]
+Ethnicity & 174 &  &  & >0.9 \\ 
+    Hispanic or Latino &  & 3 (6.5\%) & 10 (7.8\%) &  \\ 
+    Not Hispanic or Latino &  & 43 (93\%) & 118 (92\%) &  \\ 
+Education & 174 &  &  & 0.4 \\ 
+    <= high school &  & 12 (26\%) & 24 (19\%) &  \\ 
+    > high school &  & 34 (74\%) & 104 (81\%) &  \\ 
+Race & 173 &  &  & <0.001 \\ 
+    White &  & 23 (51\%) & 101 (79\%) &  \\ 
+    Black &  & 19 (42\%) & 18 (14\%) &  \\ 
+    Other &  & 3 (6.7\%) & 9 (7.0\%) &  \\ 
+    Unknown &  & 1 & 0 &  \\ 
+Age & 174 & 66.98 \ensuremath{\pm} 7.57 & 66.81 \ensuremath{\pm} 7.53 & 0.9 \\ 
+Sex & 174 &  &  & >0.9 \\ 
+    Female &  & 22 (48\%) & 58 (45\%) &  \\ 
+    Male &  & 24 (52\%) & 70 (55\%) &  \\ 
+BMI & 174 & 42.15 \ensuremath{\pm} 7.37 & 42.20 \ensuremath{\pm} 7.18 & >0.9 \\ 
+AHI & 174 & 35.59 \ensuremath{\pm} 19.91 & 34.49 \ensuremath{\pm} 21.20 & 0.8 \\ 
+ESS & 174 & 9.02 \ensuremath{\pm} 4.79 & 8.84 \ensuremath{\pm} 5.04 & 0.8 \\ 
+MMSE & 174 &  &  & 0.6 \\ 
+    21 &  & 1 (2.2\%) & 0 (0\%) &  \\ 
+    23 &  & 0 (0\%) & 3 (2.3\%) &  \\ 
+    24 &  & 2 (4.3\%) & 4 (3.1\%) &  \\ 
+    25 &  & 3 (6.5\%) & 10 (7.8\%) &  \\ 
+    26 &  & 6 (13\%) & 15 (12\%) &  \\ 
+    27 &  & 9 (20\%) & 20 (16\%) &  \\ 
+    28 &  & 11 (24\%) & 24 (19\%) &  \\ 
+    29 &  & 11 (24\%) & 35 (27\%) &  \\ 
+    30 &  & 3 (6.5\%) & 17 (13\%) &  \\ 
+Average daily CPAP (hr/night) & 174 & 1.61 \ensuremath{\pm} 1.35 & 6.42 \ensuremath{\pm} 1.32 & <0.001 \\ 
+ODSI\_baseline & 174 & 8.30 \ensuremath{\pm} 5.77 & 7.87 \ensuremath{\pm} 6.21 & 0.7 \\ 
+ODSI\_6m & 153 & 6.18 \ensuremath{\pm} 5.35 & 5.01 \ensuremath{\pm} 4.80 & 0.3 \\ 
+    Unknown &  & 12 & 9 &  \\ 
+ADCS\_MCI\_12m & 129 &  &  & 0.5 \\ 
+    1 &  & 2 (7.7\%) & 17 (17\%) &  \\ 
+    2 &  & 3 (12\%) & 25 (24\%) &  \\ 
+    3 &  & 6 (23\%) & 19 (18\%) &  \\ 
+    4 &  & 8 (31\%) & 25 (24\%) &  \\ 
+    5 &  & 4 (15\%) & 10 (9.7\%) &  \\ 
+    6 &  & 3 (12\%) & 7 (6.8\%) &  \\ 
+    Unknown &  & 20 & 25 &  \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}n (\%); Mean ± SD\\
+\textsuperscript{\textit{2}}Pearson's Chi-squared test; Welch Two Sample t-test\\
+\end{minipage}
+\end{table}
+
+\subsection{1B.Choose a single characteristic with a significant p-value
+when comparing between adherence and non-adherent groups, and describe
+in 2-3 sentences what this means in plain
+English.}\label{b.choose-a-single-characteristic-with-a-significant-p-value-when-comparing-between-adherence-and-non-adherent-groups-and-describe-in-2-3-sentences-what-this-means-in-plain-english.}
+
+The adherent group's average daily CPAP usage was considerably higher
+(approximately 6.4 hours per night) than that of the non-adherent group
+(approximately 1.6 hours per night, p \textless{} 0.001).
+
+In plain English, adherent participants utilized their CPAP machines for
+significantly extended periods of time each night. This affirms that the
+adherence status is indicative of the actual treatment behavior and
+emphasizes that device utilization is the primary determining factor
+between the 2 groups.
+
+\subsection{1C.Choose a single characteristic with a non-significant
+p-value when comparing between adherence and non-adherent groups, and
+describe in 2-3 sentences what this means in plain
+English.}\label{c.choose-a-single-characteristic-with-a-non-significant-p-value-when-comparing-between-adherence-and-non-adherent-groups-and-describe-in-2-3-sentences-what-this-means-in-plain-english.}
+
+There was no significant difference in age between adherent and
+non-adherent participants (p ≈ 0.90).
+
+This implies that the adherence to CPAP was not influenced by the age of
+the participants; younger and older individuals were equally likely to
+be adherent or non-adherent. In layman's terms, the frequency with which
+an individual employs their CPAP device does not seem to be influenced
+by their age.
+
+\subsection{2.Test the null hypothesis that there is no difference in
+change from baseline to 6 months for ODSI for adherent versus
+non-adherent participants. Write out each step of the hypothesis test
+and clearly interpret your results in plain English in 2-3
+sentences.}\label{test-the-null-hypothesis-that-there-is-no-difference-in-change-from-baseline-to-6-months-for-odsi-for-adherent-versus-non-adherent-participants.-write-out-each-step-of-the-hypothesis-test-and-clearly-interpret-your-results-in-plain-english-in-2-3-sentences.}
+
+Null Hypothesis (H₀): There is no difference in the change of ODSI from
+baseline to 6 months between adherent and non-adherent participants.
+
+\[
+H_0: \mu_{\text{adherent}} = \mu_{\text{non-adherent}}
+\]
+
+Alternative Hypothesis: \# Alternative Hypothesis (H₁): There is a
+difference in the change of ODSI between adherent and non-adherent
+participants.
+
+\[
+H_1: \mu_{\text{adherent}} \neq \mu_{\text{non-adherent}}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Remove rows with missing values in \textquotesingle{}odsi\_6m\textquotesingle{}}
+\NormalTok{clean\_data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ODSI\_6m))}
+
+\DocumentationTok{\#\# Check the structure of the cleaned data}
+\FunctionTok{str}\NormalTok{(clean\_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tibble [153 x 15] (S3: tbl_df/tbl/data.frame)
+##  $ subject_id                   : chr [1:153] "11-01102" "11-01153" "11-01442" "11-01634" ...
+##  $ Ethnicity                    : Factor w/ 2 levels "Hispanic or Latino",..: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ Education                    : Factor w/ 2 levels "<= high school",..: 2 2 2 2 2 2 1 2 2 2 ...
+##  $ Race                         : Factor w/ 3 levels "White","Black",..: 2 1 1 1 2 1 2 1 1 2 ...
+##  $ Age                          : num [1:153] 62 71 75 62 55 70 67 75 75 63 ...
+##  $ Sex                          : chr [1:153] "Female" "Male" "Female" "Male" ...
+##  $ BMI                          : num [1:153] 51 42.8 53.5 35.8 41.4 ...
+##  $ AHI                          : num [1:153] 22.4 24.4 19.9 21.5 18.2 33.4 15.3 22 79.7 37 ...
+##  $ ESS                          : num [1:153] 17 6 4 9 7 8 1 5 6 22 ...
+##  $ MMSE                         : num [1:153] 27 30 30 29 29 26 29 29 30 26 ...
+##  $ Average daily CPAP (hr/night): num [1:153] 6.45 9.05 4.57 7.62 6.3 ...
+##  $ adherence                    : Factor w/ 2 levels "Non-adherent",..: 2 2 2 2 2 2 1 2 2 2 ...
+##  $ ODSI_baseline                : num [1:153] 5 0 2 16 10 2 0 0 4 19 ...
+##  $ ODSI_6m                      : num [1:153] 4 0 2 0 8 2 0 1 3 18 ...
+##  $ ADCS_MCI_12m                 : num [1:153] 4 2 4 1 1 2 4 1 1 6 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Calculate the change in ODSI score from baseline to 6 months}
+\NormalTok{clean\_data}\SpecialCharTok{$}\NormalTok{odsi\_change }\OtherTok{\textless{}{-}}\NormalTok{ clean\_data}\SpecialCharTok{$}\NormalTok{ODSI\_6m }\SpecialCharTok{{-}}\NormalTok{ clean\_data}\SpecialCharTok{$}\NormalTok{ODSI\_baseline}
+
+\DocumentationTok{\#\# Impute missing values with the median of \textquotesingle{}odsi\_6m\textquotesingle{}}
+\NormalTok{Data}\SpecialCharTok{$}\NormalTok{ODSI\_6m[}\FunctionTok{is.na}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{ODSI\_6m)] }\OtherTok{\textless{}{-}} \FunctionTok{median}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{ODSI\_6m, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{summary}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{ODSI\_6m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   2.000   3.000   4.994   8.000  18.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Calculate ODSI change again }
+\NormalTok{clean\_data }\OtherTok{\textless{}{-}}\NormalTok{ clean\_data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{odsi\_change =}\NormalTok{ ODSI\_6m }\SpecialCharTok{{-}}\NormalTok{ ODSI\_baseline)}
+  
+\DocumentationTok{\#\# Test normality}
+\FunctionTok{shapiro.test}\NormalTok{(clean\_data}\SpecialCharTok{$}\NormalTok{odsi\_change)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  clean_data$odsi_change
+## W = 0.95872, p-value = 0.0001592
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{wilcox.test}\NormalTok{(odsi\_change }\SpecialCharTok{\textasciitilde{}}\NormalTok{ adherence, }\AttributeTok{data =}\NormalTok{ clean\_data, }
+            \AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  odsi_change by adherence
+## W = 2282.5, p-value = 0.254
+## alternative hypothesis: true location shift is not equal to 0
+\end{verbatim}
+
+Since the p-value is less than 0.05, we reject the null hypothesis of
+normality. This indicates that the odsi\_change data are not normally
+distributed.
+
+Wilcoxon Rank-Sum Test (Mann-Whitney U test): The p-value from the
+Mann-Whitney U test is greater than 0.05, so we fail to reject the null
+hypothesis. This means there is no significant difference in the change
+of ODSI scores from baseline to 6 months between adherent and
+non-adherent participants.
+
+\subsection{3. Hypothesis Test: Probability of Excessive Daytime
+Sleepiness at Baseline vs.~6
+Months}\label{hypothesis-test-probability-of-excessive-daytime-sleepiness-at-baseline-vs.-6-months}
+
+The objective is to ascertain if the likelihood of excessive daytime
+drowsiness, as determined by a cutoff score of 6 or above on the ODSI
+(Observation and Interview Based Diurnal drowsiness Inventory), is
+consistent from baseline to 6 months.
+
+State the Hypotheses Null Hypothesis (H₀): The likelihood of excessive
+daytime drowsiness remains constant from baseline to the 6-month mark.
+
+\[
+H_0: P(\text{ODSI} \geq 6 \text{ at baseline}) = P(\text{ODSI} \geq 6 \text{ at 6 months})
+\]
+
+Alternative Hypothesis (H₁): The probability of excessive daytime
+sleepiness is different at baseline compared to at 6 months.
+
+\[
+H_1: P(\text{ODSI} \geq 6 \text{ at baseline}) \neq P(\text{ODSI} \geq 6 \text{ at 6 months})
+\] Pick the Right TesTest: This is a comparison of the probabilities
+(proportions) of two groups: baseline and 6 months. Because we are
+working with categorical data (whether or not someone is excessively
+sleepy), a McNemar's test or a Chi-squared test would work. However, we
+will utilize the McNemar's test for paired categorical data (baseline
+vs.~6 months for the same people).
+
+Get the Data Ready: We need to make a variable that shows if someone has
+excessive daytime sleepiness (ODSI \textgreater{} 6) at the start and
+again at 6 months.
+
+Make a variable with two values: 1 for too much sleepiness during the
+day (ODSI ≥ 6) 0 for not being too sleepy during the day (ODSI
+\textless{} 6)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a binary variable for ODSI ≥ 6 at baseline and 6 months}
+\NormalTok{Data}\SpecialCharTok{$}\NormalTok{baseline\_sleepy }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{ODSI\_baseline }\SpecialCharTok{\textgreater{}=} \DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{Data}\SpecialCharTok{$}\NormalTok{month6\_sleepy }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{ODSI\_6m }\SpecialCharTok{\textgreater{}=} \DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\DocumentationTok{\#\# Create a contingency table for McNemar\textquotesingle{}s test}
+\NormalTok{table\_sleepiness }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{baseline\_sleepy, Data}\SpecialCharTok{$}\NormalTok{month6\_sleepy)}
+
+\DocumentationTok{\#\# Perform McNemar\textquotesingle{}s test}
+\NormalTok{mcnemar\_test }\OtherTok{\textless{}{-}} \FunctionTok{mcnemar.test}\NormalTok{(table\_sleepiness)}
+\NormalTok{mcnemar\_test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  McNemar's Chi-squared test with continuity correction
+## 
+## data:  table_sleepiness
+## McNemar's chi-squared = 14.561, df = 1, p-value = 0.0001357
+\end{verbatim}
+
+Conclusion: Reject the null hypothesis because the p-value (0.0001357)
+is less than 0.05. There is a statistically significant difference in
+the likelihood of excessive daytime sleepiness (ODSI \textgreater{} 6)
+between the baseline and 6 months. To put it another way, the chances of
+experiencing too much daytime sleepiness at the start are not the same
+as the chances at 6 months. This indicates that the variation in
+tiredness across time is substantial in the sample.
+
+\subsection{4A.Test the Null Hypothesis with Known Population Standard
+Deviation
+1.}\label{a.test-the-null-hypothesis-with-known-population-standard-deviation-1.}
+
+Null Hypothesis (H₀): The average MMSE score for all study participants
+is over 23, which means they are not having any cognitive problems.
+
+Alternative Hypothesis (H₁): The mean MMSE score for all study
+participants is less than or equal to 23, signifying cognitive
+impairment.
+
+\[
+H_0: \mu_{\text{study participants}} \geq 23
+\] \[
+H_1: \mu_{\text{study participants}} \leq 23
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Sample data check }
+
+\NormalTok{sample\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{MMSE, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Calculate the sample mean}
+\NormalTok{population\_mean }\OtherTok{\textless{}{-}} \DecValTok{23}  \CommentTok{\# The threshold for cognitive impairment}
+\NormalTok{population\_sd }\OtherTok{\textless{}{-}} \FloatTok{2.0}  \CommentTok{\# Known population standard deviation}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{MMSE)  }\CommentTok{\# Sample size}
+
+\DocumentationTok{\#\# Calculate the Z statistic}
+
+\NormalTok{Z }\OtherTok{\textless{}{-}}\NormalTok{ (sample\_mean }\SpecialCharTok{{-}}\NormalTok{ population\_mean) }\SpecialCharTok{/}\NormalTok{ (population\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n))}
+
+\DocumentationTok{\#\# Calculate p{-}value for the one{-}tailed test (lower{-}tailed)}
+
+\NormalTok{p\_value }\OtherTok{\textless{}{-}} \FunctionTok{pnorm}\NormalTok{(Z)  }
+
+\DocumentationTok{\#\# Print results}
+
+\NormalTok{Z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 30.32392
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+Understand the Z Statistic: very high number, 30.32, is the Z statistic.
+This means that the sample mean MMSE is far higher than the criteria for
+cognitive impairment, which is 23.
+
+p-value: The p-value of 1 means that it is very unlikely that the sample
+mean MMSE is less than 23. The p-value being more than 0.05 means that
+there isn't enough evidence to reject the null hypothesis. To put it
+another way: This indicates that there is no substantial difference
+between the sample mean and the threshold value of 23, hence supporting
+the null hypothesis.
+
+Conclusion for non-statistical people: We do not reject the null
+hypothesis because the p-value is quite high (1). This indicates that
+the study participants possess a mean MMSE score exceeding 23, with no
+substantial evidence of cognitive impairment among the sample.
+
+\subsection{4B.Test the Null Hypothesis with an Unknown Population
+Standard
+Deviation}\label{b.test-the-null-hypothesis-with-an-unknown-population-standard-deviation}
+
+Null Hypothesis (H₀): The average MMSE score of the study participants
+is 23 or higher, which means there is no cognitive impairment.
+
+Alternative Hypothesis (H₁): The average MMSE score of the people in the
+study is 23 or lower, which means they have cognitive problems.
+
+\[
+H_0: \mu_{\text{study participants}} \geq 23
+\]
+
+\[
+H_1: \mu_{\text{study participants}} \leq 23
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Sample data check: }
+
+\NormalTok{sample\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{MMSE, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Calculate the sample mean}
+\NormalTok{population\_mean }\OtherTok{\textless{}{-}} \DecValTok{23}  \CommentTok{\# The threshold for cognitive impairment}
+\NormalTok{sample\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{MMSE, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# Sample standard deviation }
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{MMSE)  }\CommentTok{\# Sample size}
+
+\DocumentationTok{\#\# Calculate the t{-}statistic}
+
+\NormalTok{t\_stat }\OtherTok{\textless{}{-}}\NormalTok{ (sample\_mean }\SpecialCharTok{{-}}\NormalTok{ population\_mean) }\SpecialCharTok{/}\NormalTok{ (sample\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n))}
+
+\DocumentationTok{\#\# Degrees of freedom for the t{-}distribution}
+
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}  \CommentTok{\# Degrees of freedom}
+
+\DocumentationTok{\#\# Calculate p{-}value for the one{-}tailed test}
+
+\NormalTok{p\_value\_t }\OtherTok{\textless{}{-}} \FunctionTok{pt}\NormalTok{(t\_stat, df)  }\CommentTok{\# For one{-}tailed lower test}
+
+\DocumentationTok{\#\# Print results}
+\NormalTok{t\_stat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 34.08097
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_value\_t}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+Understanding the t-statistic: The t-statistic of 34.08 is exceptionally
+high, which means that the sample mean MMSE is far higher than the
+criterion for cognitive impairment, which is 23. This shows that the
+sample mean and the hypothesized population mean are very different from
+each other.
+
+Understanding the p-value: The p-value of 1 is exceptionally high. This
+means that the sample mean MMSE is very unlikely to be less than 23.
+This means that there is no proof to reject the null hypothesis.
+
+We can't reject the null hypothesis because the p-value is higher than
+0.05.
+
+Conclusion for an Audience Without a Statistics Background: The p-value
+is 1, which suggests that the participants' average MMSE score is much
+higher than 23. This means that there is no proof that the individuals
+are cognitively impaired based on the MMSE score. In other words, we
+can't say for sure that the people in this study have cognitive problems
+solely based on the MMSE results.
+
+\subsection{5.Compute and Report the Mean and Standard Deviation for the
+Variable Representing Average Daily CPAP
+Use}\label{compute-and-report-the-mean-and-standard-deviation-for-the-variable-representing-average-daily-cpap-use}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# 5A Calculate the mean and standard deviation for \textquotesingle{}avg\_daily\_cpap\textquotesingle{}}
+\NormalTok{mean\_cpap }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(Data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Average daily CPAP (hr/night)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{sd\_cpap }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(Data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Average daily CPAP (hr/night)}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\DocumentationTok{\#\# Report the results}
+\NormalTok{mean\_cpap}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.150766
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sd\_cpap}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.504029
+\end{verbatim}
+
+\#Interpretation: The average daily CPAP use in this sample is
+approximately 5.15 hours per night. The standard deviation is 2.50
+hours, indicating that there is a fairly wide variation in CPAP usage
+among participants. This suggests that while some individuals use CPAP
+consistently for long durations, others use it much less, reflecting
+differences in adherence or treatment habits.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#5B Proportion of Participants with Average Daily CPAP Use Less Than 3 Hours}
+
+\CommentTok{\# Calculate the proportion of participants with average daily CPAP use \textless{} 3 hours}
+\NormalTok{proportion\_less\_than\_3 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(Data}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Average daily CPAP (hr/night)}\StringTok{\textasciigrave{}} \SpecialCharTok{\textless{}} \DecValTok{3}\NormalTok{, }
+                               \AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Report the proportion}
+\NormalTok{proportion\_less\_than\_3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2068966
+\end{verbatim}
+
+Interpretation: About 20.7\% of the participants in the study use their
+CPAP machine for less than three hours per night. This suggests that a
+significant portion of participants may not be adhering to the
+recommended CPAP usage, which could potentially reduce the effectiveness
+of the therapy in managing sleep apnea.
+
+In simpler terms, roughly one in five people in this study are not using
+their CPAP machine long enough each night, which may make the treatment
+less effective in improving their sleep and breathing.
+
+\subsection{6A.Compute and Report the Mean and Standard Deviation for
+BMI}\label{a.compute-and-report-the-mean-and-standard-deviation-for-bmi}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate the mean and standard deviation for BMI}
+\NormalTok{mean\_bmi }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{BMI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{sd\_bmi }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{BMI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Report the results}
+\NormalTok{mean\_bmi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 42.18415
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sd\_bmi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.206295
+\end{verbatim}
+
+\subsection{6B. Estimate and Report the Proportion of Participants Who
+Are Considered Obese (BMI ≥
+30)}\label{b.-estimate-and-report-the-proportion-of-participants-who-are-considered-obese-bmi-30}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculate the proportion of participants who are considered obese (BMI \textgreater{}= 30)}
+\NormalTok{proportion\_obese }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(Data}\SpecialCharTok{$}\NormalTok{BMI }\SpecialCharTok{\textgreater{}=} \DecValTok{30}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Report the proportion}
+\NormalTok{proportion\_obese}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9597701
+\end{verbatim}
+
+Interpretation: The individuals in this study have an average BMI of
+42.18, which is far higher than the normal healthy range of 18.5 to
+24.9. The standard deviation of 7.21 indicates considerable variability
+in BMI among participants.
+
+Furthermore, about 96\% of participants had a BMI of 30 or higher,
+classifying them as obese. This finding suggests that the majority of
+individuals in this study are overweight or obese, an important factor
+to consider when evaluating potential health outcomes and risks
+associated with obesity.
+
+\subsection{7A.Among those who are adherent to CPAP, describe the
+distribution of the variable AHI with appropriate statistics and data
+visualizations. Then, summarize your findings in 2-3 sentences in plain
+language suitable for a non-statistical
+audience.}\label{a.among-those-who-are-adherent-to-cpap-describe-the-distribution-of-the-variable-ahi-with-appropriate-statistics-and-data-visualizations.-then-summarize-your-findings-in-2-3-sentences-in-plain-language-suitable-for-a-non-statistical-audience.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#7A}
+
+\CommentTok{\# Filter for adherent participants}
+\NormalTok{adherent\_data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(adherence }\SpecialCharTok{==} \StringTok{"Adherent"}\NormalTok{)}
+
+\CommentTok{\# Summary statistics for AHI}
+\FunctionTok{summary}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   15.00   19.50   26.75   34.49   43.65  112.70
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_ahi }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{sd\_ahi }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Mean AHI:"}\NormalTok{, mean\_ahi, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mean AHI: 34.48664
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"SD AHI:"}\NormalTok{, sd\_ahi, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## SD AHI: 21.20208
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Histogram}
+\FunctionTok{hist}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI,}
+     \AttributeTok{main =} \StringTok{"Distribution of AHI (Adherent Participants)"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Apnea{-}Hypopnea Index (AHI)"}\NormalTok{,}
+     \AttributeTok{col =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{border =} \StringTok{"white"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity-2_trial1_files/figure-latex/unnamed-chunk-9-1.pdf}}
+
+Interpretation: For the adherent CPAP participants, the Apnea--Hypopnea
+Index (AHI) has an average value of approximately 34.5, with a standard
+deviation of 21.2. The AHI values range from 15 to 112.7, indicating a
+wide spread. The histogram shows a right-skewed distribution, suggesting
+that a few participants with very high AHI values substantially
+influence the overall data pattern.
+
+In plain English: Among people who regularly use CPAP, the AHI usually
+averages around 34.5, but it can vary widely---from 15 to over 110. This
+means that while many participants have moderate AHI scores, some
+experience much more severe sleep apnea. Because a small group has very
+high AHI values, the data are unevenly distributed, making the average
+appear higher.
+
+\subsection{7B. Among those who are adherent to CPAP, describe the
+sampling distribution based on samples of size 30 from the variable AHI
+based on theory with appropriate statistics and data visualizations.
+Then, summarize findings in 2-3 sentences in plain language suitable for
+a non-statistical
+audience.}\label{b.-among-those-who-are-adherent-to-cpap-describe-the-sampling-distribution-based-on-samples-of-size-30-from-the-variable-ahi-based-on-theory-with-appropriate-statistics-and-data-visualizations.-then-summarize-findings-in-2-3-sentences-in-plain-language-suitable-for-a-non-statistical-audience.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#7B}
+
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\CommentTok{\# 1) Subset + ensure numeric}
+\NormalTok{adherent\_data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(adherence }\SpecialCharTok{==} \StringTok{"Adherent"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{AHI =} \FunctionTok{as.numeric}\NormalTok{(AHI))}
+
+\CommentTok{\# 2) Population (group) parameters for AHI among adherent participants}
+\NormalTok{mu\_hat  }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)   }
+\NormalTok{sd\_hat  }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI,   }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }
+\NormalTok{n\_theory }\OtherTok{\textless{}{-}} \DecValTok{30}
+\NormalTok{SE\_theory }\OtherTok{\textless{}{-}}\NormalTok{ sd\_hat }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n\_theory)}
+
+\FunctionTok{cat}\NormalTok{(}
+  \StringTok{"Adherent AHI (theory, n = 30)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+  \StringTok{"Mean (μ̂):"}\NormalTok{, }\FunctionTok{round}\NormalTok{(mu\_hat, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+  \StringTok{"SD (σ̂):"}\NormalTok{, }\FunctionTok{round}\NormalTok{(sd\_hat, }\DecValTok{2}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,}
+  \StringTok{"Standard Error (SE = σ̂/sqrt(30)):"}\NormalTok{, }\FunctionTok{round}\NormalTok{(SE\_theory, }\DecValTok{3}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Adherent AHI (theory, n = 30)
+##  Mean (μ̂): 34.49 
+##  SD (σ̂): 21.2 
+##  Standard Error (SE = σ̂/sqrt(30)): 3.871
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 3) Visual 1 (theoretical normal curve for X̄, no data histogram)}
+\NormalTok{xgrid }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{x =} \FunctionTok{seq}\NormalTok{(mu\_hat }\SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\NormalTok{SE\_theory, mu\_hat }\SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\NormalTok{SE\_theory, }\AttributeTok{length.out =} \DecValTok{400}\NormalTok{)}
+\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(xgrid, }\FunctionTok{aes}\NormalTok{(x)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dnorm, }\AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ mu\_hat, }\AttributeTok{sd =}\NormalTok{ SE\_theory)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Theoretical Sampling Distribution of Mean AHI (Adherent, n = 30)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Sample Mean AHI (X̄)"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Density"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity-2_trial1_files/figure-latex/unnamed-chunk-10-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Visual 2: simulate to illustrate CLT and overlay theory}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2025}\NormalTok{)}
+\NormalTok{B }\OtherTok{\textless{}{-}} \DecValTok{1000}
+\NormalTok{samp\_means }\OtherTok{\textless{}{-}} \FunctionTok{replicate}\NormalTok{(}
+\NormalTok{  B,}
+  \FunctionTok{mean}\NormalTok{(}\FunctionTok{sample}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{size =}\NormalTok{ n\_theory, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{), }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(samp\_means), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ samp\_means)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{fill =} \StringTok{"steelblue"}\NormalTok{, }
+                 \AttributeTok{color =} \StringTok{"white"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.75}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dnorm, }\AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ mu\_hat, }\AttributeTok{sd =}\NormalTok{ SE\_theory),}
+                \AttributeTok{linewidth =} \DecValTok{1}\NormalTok{, }\AttributeTok{color =} \StringTok{"firebrick"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Sampling Distribution of Mean AHI (Adherent, n = 30)}\SpecialCharTok{\textbackslash{}n}\StringTok{Histogram of }
+\StringTok{    1,000 sample means with theoretical normal overlay"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Sample Mean AHI (X̄)"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Density"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity-2_trial1_files/figure-latex/unnamed-chunk-10-2.pdf}}
+
+Interpretation: If we repeatedly take random groups of 30 adherent CPAP
+users and calculate their average AHI, those averages would tend to
+cluster around 34.5. The standard error of 3.9 indicates that the sample
+means would typically vary by about 3.9 AHI points from one sample to
+another. In other words, most of the group averages would lie close to
+the true mean, forming a bell-shaped (normal) distribution.
+
+In short, when drawing samples of 30 adherent users, the average AHI for
+each group would generally be close to 34.5, with only moderate
+variation between samples.
+
+\subsection{7C. Randomly draw 1,000 samples of size 30 (with
+replacement) from the 128 AHI scores of adherent participants. For each
+sample, compute the sample mean AHI. Use these 1,000 sample means
+to:}\label{c.-randomly-draw-1000-samples-of-size-30-with-replacement-from-the-128-ahi-scores-of-adherent-participants.-for-each-sample-compute-the-sample-mean-ahi.-use-these-1000-sample-means-to}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#7C}
+\CommentTok{\# Ensure the AHI column is numeric}
+\NormalTok{adherent\_data}\SpecialCharTok{$}\NormalTok{AHI }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI)}
+
+\CommentTok{\# Define the parameters}
+\NormalTok{MY\_DATA\_1 }\OtherTok{\textless{}{-}}\NormalTok{ adherent\_data}
+\NormalTok{VARIABLE }\OtherTok{\textless{}{-}} \StringTok{"AHI"}          \CommentTok{\# The variable to sample}
+\NormalTok{SAMPLES }\OtherTok{\textless{}{-}} \DecValTok{1000}            \CommentTok{\# Number of samples}
+\NormalTok{SIZE }\OtherTok{\textless{}{-}} \DecValTok{30}                 \CommentTok{\# Sample size}
+
+\CommentTok{\# Initialize an empty vector to store the means}
+\NormalTok{meanValues }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(SAMPLES)}
+
+\CommentTok{\# Sampling loop (1000 samples, sample size 30)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{SAMPLES) \{}
+\NormalTok{  sampSpots }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(MY\_DATA\_1), }\AttributeTok{size =}\NormalTok{ SIZE, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  thisSamp }\OtherTok{\textless{}{-}}\NormalTok{ MY\_DATA\_1[sampSpots, VARIABLE]}
+  
+  \CommentTok{\# Ensure the sample is numeric and handle any NA values}
+\NormalTok{  thisSamp }\OtherTok{\textless{}{-}}\NormalTok{ thisSamp[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(thisSamp)]}
+  
+  \ControlFlowTok{if}\NormalTok{(}\FunctionTok{length}\NormalTok{(thisSamp) }\SpecialCharTok{==}\NormalTok{ SIZE) \{  }\CommentTok{\# Check if the sample is the correct size}
+\NormalTok{    meanValues[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(thisSamp)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    meanValues[i] }\OtherTok{\textless{}{-}} \ConstantTok{NA}  \CommentTok{\# If the sample is not valid, mark as NA}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# Check if valid sample means are calculated}
+\ControlFlowTok{if}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(meanValues)) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+  \FunctionTok{stop}\NormalTok{(}\StringTok{"No valid means were calculated. Check the sampling process."}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Calculate and report mean and SD of the sampling distribution}
+\NormalTok{mean\_sampling\_1 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(meanValues, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{sd\_sampling\_1 }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(meanValues, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Mean of sample means:"}\NormalTok{, mean\_sampling\_1, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mean of sample means: 34.49511
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Standard deviation of sample means (Standard Error):"}\NormalTok{, sd\_sampling\_1, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Standard deviation of sample means (Standard Error): 3.798762
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the histogram and overlay normal curve}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(meanValues), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ meanValues)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{fill =} \StringTok{"skyblue"}\NormalTok{, }
+                 \AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dnorm, }\AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ mean\_sampling\_1, }
+                                         \AttributeTok{sd =}\NormalTok{ sd\_sampling\_1), }
+                \AttributeTok{color =} \StringTok{"darkred"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sampling Distribution of Mean AHI (n = 30, 1000 samples)"}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{"Sample Mean AHI"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Density"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity-2_trial1_files/figure-latex/unnamed-chunk-11-1.pdf}}
+
+Interpretation: The histogram of the 1,000 sample means forms a smooth,
+symmetric, bell-shaped curve centered around 34.5, with the red normal
+curve closely overlapping it. This shows that the sample means follow an
+approximately normal distribution with only moderate variability,
+meaning that averages from groups of 30 adherent participants are highly
+consistent.
+
+The observed sampling distribution matches the theoretical distribution
+predicted earlier, with nearly the same mean (≈ 34.5) and standard error
+(≈ 3.9). This agreement provides strong evidence of the Central Limit
+Theorem in action---even though individual AHI scores vary widely, the
+averages from groups of 30 adherent users remain stable and normally
+distributed around the true mean.
+
+\subsection{7D. Among those who are non-adherent to CPAP, describe the
+sampling distribution based on samples of size 100 from the variable AHI
+based on theory with appropriate statistics and data visualizations.
+Then summarize your findings in 2-3 sentences in plain language suitable
+for a non-statistical
+audience.}\label{d.-among-those-who-are-non-adherent-to-cpap-describe-the-sampling-distribution-based-on-samples-of-size-100-from-the-variable-ahi-based-on-theory-with-appropriate-statistics-and-data-visualizations.-then-summarize-your-findings-in-2-3-sentences-in-plain-language-suitable-for-a-non-statistical-audience.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# 7D}
+\CommentTok{\# Load necessary libraries}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Filter for non{-}adherent participants}
+\NormalTok{non\_adherent\_data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(adherence }\SpecialCharTok{==} \StringTok{"Non{-}adherent"}\NormalTok{)}
+
+\CommentTok{\# Ensure the AHI column is numeric}
+\NormalTok{non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI)}
+
+\CommentTok{\# Calculate population parameters (mean and standard deviation of AHI)}
+\NormalTok{population\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{population\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Parameters for sampling}
+\NormalTok{sample\_size }\OtherTok{\textless{}{-}} \DecValTok{100}  \CommentTok{\# Sample size}
+\NormalTok{n\_samples }\OtherTok{\textless{}{-}} \DecValTok{1000}   \CommentTok{\# Number of samples}
+
+\CommentTok{\# Calculate the standard error}
+\NormalTok{standard\_error }\OtherTok{\textless{}{-}}\NormalTok{ population\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(sample\_size)}
+
+\CommentTok{\# Simulate the sampling distribution of the mean}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)  }\CommentTok{\# Set a seed for reproducibility}
+\NormalTok{sample\_means }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n\_samples)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n\_samples) \{}
+  \CommentTok{\# Randomly sample 100 values from the population with replacement}
+\NormalTok{  sample\_data }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{size =}\NormalTok{ sample\_size, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  sample\_means[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(sample\_data, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Calculate mean and standard deviation of the sampling distribution}
+\NormalTok{mean\_sampling }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(sample\_means, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{sd\_sampling }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(sample\_means, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Theoretical Mean of the Sampling Distribution:"}\NormalTok{, mean\_sampling, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Theoretical Mean of the Sampling Distribution: 35.49504
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Theoretical Standard Deviation of the Sampling Distribution }
+\StringTok{    (Standard Error):"}\NormalTok{, sd\_sampling, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Theoretical Standard Deviation of the Sampling Distribution 
+##     (Standard Error): 1.881024
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the histogram of the sample means and overlay a normal distribution curve}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_means), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ sample\_means)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{fill =} \StringTok{"skyblue"}\NormalTok{, }
+                 \AttributeTok{color =} \StringTok{"white"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dnorm, }
+                \AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ population\_mean, }\AttributeTok{sd =}\NormalTok{ standard\_error), }
+                \AttributeTok{color =} \StringTok{"darkred"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Overlay normal curve}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sampling Distribution of Mean AHI (n = 100, 1000 samples)"}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{"Sample Mean AHI"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Density"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity-2_trial1_files/figure-latex/unnamed-chunk-12-1.pdf}}
+
+Interpretation: If we repeatedly take random groups of 100 non-adherent
+CPAP users and calculate their average AHI, those averages would cluster
+around 35.6. The standard error of about 2 AHI points indicates that the
+sample means would vary only slightly from one sample to another. This
+means most group averages would fall close to the true mean, forming a
+bell-shaped (normal) distribution.
+
+In short, when taking samples of 100 non-adherent users, the average AHI
+is estimated very precisely around 35--36, showing that larger sample
+sizes produce more stable and reliable estimates of the true mean.
+
+\subsection{7E. Randomly draw 1,000 samples of size 100 (with
+replacement) from the 46 AHI scores of non-adherent participants. For
+each sample, compute the sample mean
+AHI.}\label{e.-randomly-draw-1000-samples-of-size-100-with-replacement-from-the-46-ahi-scores-of-non-adherent-participants.-for-each-sample-compute-the-sample-mean-ahi.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#7E}
+\CommentTok{\# Replace the following with actual values:}
+\NormalTok{MY\_DATA\_2 }\OtherTok{\textless{}{-}}\NormalTok{ non\_adherent\_data  }
+\NormalTok{VARIABLE }\OtherTok{\textless{}{-}} \StringTok{"AHI"}            
+\NormalTok{SAMPLES }\OtherTok{\textless{}{-}} \DecValTok{1000}              
+\NormalTok{SIZE }\OtherTok{\textless{}{-}} \DecValTok{100}                  
+
+\CommentTok{\# Ensure the AHI column is numeric}
+\NormalTok{non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI)}
+\CommentTok{\# Ensure the variable is numeric }
+\NormalTok{MY\_DATA\_2[[VARIABLE]] }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(MY\_DATA\_2[[VARIABLE]])}
+\CommentTok{\# Initialize an empty vector to store sample means}
+\NormalTok{meanValues }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+
+\CommentTok{\# Loop to draw SAMPLES number of samples and calculate mean AHI for each sample}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{SAMPLES) \{}
+  \CommentTok{\# Sample with replacement}
+\NormalTok{  sampSpots }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(MY\_DATA\_2), }\AttributeTok{size =}\NormalTok{ SIZE, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+  
+  \CommentTok{\# Extract the sample data for the variable specified}
+\NormalTok{  thisSamp }\OtherTok{\textless{}{-}}\NormalTok{ MY\_DATA\_2[sampSpots, ][[VARIABLE]] }
+  
+
+  
+\CommentTok{\# Calculate and store the mean of the sample}
+\NormalTok{  meanValues }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(meanValues, }\FunctionTok{mean}\NormalTok{(thisSamp, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{))  }
+\NormalTok{\}}
+
+
+\CommentTok{\# Calculate and print the mean and sd of the sampling distribution}
+\NormalTok{mean\_sampling\_2 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(meanValues, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{sd\_sampling\_2 }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(meanValues, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Mean of the sampling distribution:"}\NormalTok{, mean\_sampling\_2, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Mean of the sampling distribution: 35.61692
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Standard deviation of the sampling distribution (Standard Error):"}\NormalTok{, sd\_sampling\_2, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Standard deviation of the sampling distribution (Standard Error): 2.021068
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Plot the histogram of sample means and overlay a normal distribution curve}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(meanValues), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ meanValues)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{fill =} \StringTok{"skyblue"}\NormalTok{, }\AttributeTok{color =} \StringTok{"white"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{stat\_function}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ dnorm, }
+                \AttributeTok{args =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ mean\_sampling\_2, }\AttributeTok{sd =}\NormalTok{ sd\_sampling\_2), }
+                \AttributeTok{color =} \StringTok{"darkred"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# Overlay normal curve}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Sampling Distribution of Mean AHI (n = 100, 1000 samples)"}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{"Sample Mean AHI"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Density"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity-2_trial1_files/figure-latex/unnamed-chunk-13-1.pdf}}
+
+Interpretation: The histogram of 1,000 sample averages for the
+non-adherent group forms a smooth, bell-shaped curve centered around
+35.6, with the red normal curve fitting closely on top. This indicates
+that the sample means follow an approximately normal distribution. The
+spread is small---about 2 AHI points---showing that the averages from
+groups of 100 non-adherent participants vary very little between
+samples.
+
+Comparison with Part (D): This empirical sampling distribution,
+generated from multiple simulations, closely matches the theoretical
+distribution described in Part (D). Both have nearly identical means (≈
+35.6) and standard errors (≈ 2), confirming that theoretical
+expectations and simulated results agree.
+
+In plain terms: Whether calculated mathematically or obtained through
+resampling, the results show that the average AHI among non-adherent
+users is stable, predictable, and normally distributed when the sample
+size is large.
+
+\subsection{7F. Compare the sampling distributions among adherent versus
+non-adherent participants. How do the means and spreads of the two
+sampling distributions compare? Why do you think they are the same or
+different? Summarize your findings in 3-5 sentences in plain language
+suitable for a non-statistical
+audience.}\label{f.-compare-the-sampling-distributions-among-adherent-versus-non-adherent-participants.-how-do-the-means-and-spreads-of-the-two-sampling-distributions-compare-why-do-you-think-they-are-the-same-or-different-summarize-your-findings-in-3-5-sentences-in-plain-language-suitable-for-a-non-statistical-audience.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#7F}
+\CommentTok{\#Filter for adherent and non{-}adherent participants}
+\NormalTok{adherent\_data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(adherence }\SpecialCharTok{==} \StringTok{"Adherent"}\NormalTok{)}
+\NormalTok{non\_adherent\_data }\OtherTok{\textless{}{-}}\NormalTok{ Data }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(adherence }\SpecialCharTok{==} \StringTok{"Non{-}adherent"}\NormalTok{)}
+
+\CommentTok{\# Ensure AHI is numeric}
+\NormalTok{adherent\_data}\SpecialCharTok{$}\NormalTok{AHI }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI)}
+\NormalTok{non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI)}
+
+\CommentTok{\# Set parameters}
+\NormalTok{SAMPLES }\OtherTok{\textless{}{-}} \DecValTok{1000}
+\NormalTok{SIZE\_ADHERENT }\OtherTok{\textless{}{-}} \DecValTok{30}
+\NormalTok{SIZE\_NONADHERENT }\OtherTok{\textless{}{-}} \DecValTok{100}
+
+\CommentTok{\# Initialize vectors}
+\NormalTok{sample\_means\_adherent }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(SAMPLES)}
+\NormalTok{sample\_means\_non\_adherent }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(SAMPLES)}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Loop to calculate sample means}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{SAMPLES) \{}
+\NormalTok{  sample\_adherent }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{size =}\NormalTok{ SIZE\_ADHERENT, }
+                            \AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  sample\_non\_adherent }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(non\_adherent\_data}\SpecialCharTok{$}\NormalTok{AHI, }\AttributeTok{size =}\NormalTok{ SIZE\_NONADHERENT, }
+                                \AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+  
+\NormalTok{  sample\_means\_adherent[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(sample\_adherent, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  sample\_means\_non\_adherent[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(sample\_non\_adherent, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Calculate summary stats}
+\NormalTok{mean\_adherent }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(sample\_means\_adherent)}
+\NormalTok{std\_adherent }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(sample\_means\_adherent)}
+
+\NormalTok{mean\_non\_adherent }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(sample\_means\_non\_adherent)}
+\NormalTok{std\_non\_adherent }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(sample\_means\_non\_adherent)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Adherent Mean:"}\NormalTok{, mean\_adherent, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Adherent Mean: 34.51462
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Non{-}Adherent Mean:"}\NormalTok{, mean\_non\_adherent, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Non-Adherent Mean: 35.55352
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Adherent SD:"}\NormalTok{, std\_adherent, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Adherent SD: 3.876826
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Non{-}Adherent SD:"}\NormalTok{, std\_non\_adherent, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Non-Adherent SD: 1.954662
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Combine data for plotting}
+\NormalTok{data\_for\_plot }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{mean\_values =} \FunctionTok{c}\NormalTok{(sample\_means\_adherent, sample\_means\_non\_adherent),}
+  \AttributeTok{group =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Adherent"}\NormalTok{, }\StringTok{"Non{-}Adherent"}\NormalTok{), }\AttributeTok{each =}\NormalTok{ SAMPLES)}
+\NormalTok{)}
+
+\CommentTok{\# Plot the overlapping histograms}
+\FunctionTok{ggplot}\NormalTok{(data\_for\_plot, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mean\_values, }\AttributeTok{fill =}\NormalTok{ group)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(density)), }\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.6}\NormalTok{,}
+                 \AttributeTok{position =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Comparison of Sampling Distributions of Mean AHI (Adherent vs Non{-}Adherent)"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Sample Mean AHI"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Density"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"lightgreen"}\NormalTok{, }\StringTok{"lightcoral"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.title =} \FunctionTok{element\_blank}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Activity-2_trial1_files/figure-latex/unnamed-chunk-14-1.pdf}}
+
+Interpretation: The average Apnea--Hypopnea Index (AHI) levels for both
+groups are quite similar, ranging from 34 to 36. However, their sampling
+distributions differ in spread. The non-adherent group shows a tighter,
+more consistent distribution because it is based on a larger sample size
+(n = 100), which reduces random variation.
+
+In contrast, the adherent group's distribution is wider, as smaller
+samples (n = 30) naturally produce more fluctuation in their averages.
+
+In simple terms: Both groups have roughly the same average severity of
+sleep apnea, but the results for non-adherent users are more stable and
+predictable, while those for adherent users vary more from sample to
+sample.
+
+```
+
+\end{document}
